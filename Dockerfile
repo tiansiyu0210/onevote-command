@@ -3,7 +3,7 @@ FROM java:8
 # We define that a volume named /tmp should exist
 VOLUME /tmp
 # We add a file from the local file system, naming it “app.jar.” The renaming isn't necessary, just an option available
-ADD target/demo-0.0.1-SNAPSHOT.jar app.jar
+ADD target/command-0.0.1-SNAPSHOT.jar app.jar
 # We state that we want to open port 8080 on the container﻿
 EXPOSE 8080
 # We run a command on the system to “touch” the file. This ensures a file modification date on the app.jar file
