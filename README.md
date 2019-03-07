@@ -11,6 +11,10 @@
 
 
 
-====================
+
 swagger:
 http://localhost:8085/swagger-ui.html
+
+health:
+http://localhost:8085/actuator/health
+
