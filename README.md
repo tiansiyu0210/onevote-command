@@ -5,7 +5,7 @@
    -- docker rm $(docker ps -aq)
 2. remove docker image
    -- docker rmi producer
-3. mvn -U clean -Dkiptests
+3. mvn -U clean install -Dskiptests
 4. docker build -t producer:latest .
 
 
