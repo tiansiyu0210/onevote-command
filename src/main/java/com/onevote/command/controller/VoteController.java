@@ -5,9 +5,11 @@ import com.onevote.Vote;
 import com.onevote.command.exception.RecordNotFoundException;
 import com.onevote.command.producer.VoteProducer;
 import com.onevote.command.repository.VoteRepository;
+import com.onevote.command.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -22,6 +24,11 @@ public class VoteController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void insertVote(@RequestBody Vote vote) {
+        vote.setCreateAt(LocalDateTime.now());
+        vote.getOptions().forEach(option -> {
+            option.setCreateAt(LocalDateTime.now());
+            UserService.setAnonymousUser(option);
+        });
         voteProducer.sendMessage(vote);
     }
 
