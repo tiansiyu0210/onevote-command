@@ -1,6 +1,7 @@
-package com.onevote.command.demo;
+package com.onevote.command.config;
 
 import com.onevote.User;
+import com.onevote.Vote;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +17,9 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
+    //user kafka bean
     @Bean
-    public ProducerFactory<String, User> producerFactory() {
+    public ProducerFactory<String, User> userProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -26,8 +28,24 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, User> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
+    public KafkaTemplate<String, User> userKafkaTemplate() {
+        return new KafkaTemplate<>(userProducerFactory());
+    }
+
+
+    //vote kafka bean
+    @Bean
+    public ProducerFactory<String, Vote> voteProducerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, Vote> voteKafkaTemplate() {
+        return new KafkaTemplate<>(voteProducerFactory());
     }
 
 
