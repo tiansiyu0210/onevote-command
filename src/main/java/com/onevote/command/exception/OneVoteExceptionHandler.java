@@ -1,5 +1,6 @@
 package com.onevote.command.exception;
 
+import com.onevote.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,11 +22,11 @@ public class OneVoteExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(RecordNotFoundException.class)
-    public final ResponseEntity<Object> handleRecordNotFoundException(RecordNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(KafkaProducerException.class)
+    public final ResponseEntity<Object> handleRecordNotFoundException(KafkaProducerException ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        ErrorResponse error = new ErrorResponse("Record Not Found", details);
-        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+        ErrorResponse error = new ErrorResponse("cannot produce this vote", details);
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
 }
