@@ -19,7 +19,9 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public @ResponseBody
     User insertUser(@RequestBody User user) {
+
         userProducer.sendMessage(user);
+
         if(user.getUserId() != null){
             return user;
         }else{
