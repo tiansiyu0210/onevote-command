@@ -1,4 +1,4 @@
-package com.onevote.command.demo;
+package com.onevote.command.config;
 
 import com.onevote.User;
 import org.apache.kafka.clients.producer.ProducerConfig;

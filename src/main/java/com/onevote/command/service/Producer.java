@@ -1,4 +1,4 @@
-package com.onevote.command.demo;
+package com.onevote.command.service;
 
 import com.onevote.User;
 import org.slf4j.Logger;

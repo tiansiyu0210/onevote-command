@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  session:
+
+  servlet:
+    session:
+      cookie:
+        name: UISESSION
+    context-path: /onevote
+
+
+security:
+  oauth2:
+    client:
+      clientId: oneVoteClient
+      clientSecret: oneVoteClient123
+      accessTokenUri: http://localhost:8086/auth/oauth/token
+      userAuthorizationUri: http://localhost:8086/auth/oauth/authorize
+      #use-current-uri: false
+      #pre-established-redirect-uri: http://localhost:8085/onevote/aaa
+    resource:
+      userInfoUri: http://localhost:8086/auth/me
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongocontainer:27017/test
+
+management:
+  endpoint:
+    health:
+      show-details: always
