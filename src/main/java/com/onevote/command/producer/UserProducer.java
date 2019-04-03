@@ -1,4 +1,4 @@
-package com.onevote.command.demo;
+package com.onevote.command.producer;
 
 import com.onevote.User;
 import org.slf4j.Logger;
@@ -8,9 +8,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Producer {
+public class UserProducer {
 
-    private static final Logger logger = LoggerFactory.getLogger(Producer.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserProducer.class);
     private static final String TOPIC = "users";
 
     @Autowired

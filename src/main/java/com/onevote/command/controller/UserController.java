@@ -1,6 +1,8 @@
-package com.onevote.command.demo;
+package com.onevote.command.controller;
 
 import com.onevote.User;
+import com.onevote.command.producer.UserProducer;
+import com.onevote.command.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ public class UserController {
     UserRepository userRepository;
 
     @Autowired
-    Producer producer;
+    UserProducer producer;
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public void insertUser(@RequestBody com.onevote.User user) {

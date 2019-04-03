@@ -1,4 +1,4 @@
-package com.onevote.command.demo;
+package com.onevote.command.repository;
 
 import com.onevote.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
