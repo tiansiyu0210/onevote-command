@@ -16,7 +16,7 @@ public class ExceptionHandlerControllerAdvice {
     @ExceptionHandler(OneVoteRuntimeException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public @ResponseBody
-    ExceptionResponse handleResourceNotFound(final OneVoteRuntimeException exception,
+    ExceptionResponse handleOneVoteException(final OneVoteRuntimeException exception,
                                              final HttpServletRequest request) {
 
         ExceptionResponse error = new ExceptionResponse();

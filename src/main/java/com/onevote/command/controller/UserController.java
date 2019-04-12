@@ -5,13 +5,14 @@ import com.onevote.command.producer.UserProducer;
 import com.onevote.command.repository.UserRepository;
 import com.onevote.command.security.CustomUserDetails;
 import com.onevote.command.service.UserService;
-import com.onevote.command.util.UserUtil;
+import com.onevote.command.validation.UserValidation;
+import com.onevote.exception.OneVoteRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @RestController()
@@ -26,8 +27,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
     @PostMapping("/users")
-    public void insertUser(@RequestBody User user) {
+    public void insertUser(@RequestBody User user) throws OneVoteRuntimeException {
+        UserValidation.validUserCreation(user);
+        if(userService.isUserExist(user).get()){
+            throw new OneVoteRuntimeException("username token");
+        }
+
+        user.setCreateAt(new Date());
+
         userProducer.sendMessage(user);
     }
 
