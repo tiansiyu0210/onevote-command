@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class VoteProducer {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserProducer.class);
+    private static final Logger logger = LoggerFactory.getLogger(VoteProducer.class);
     private static final String TOPIC = "vote";
 
     @Autowired

@@ -8,6 +8,7 @@ import com.onevote.command.repository.UserRepository;
 import com.onevote.command.repository.VoteRepository;
 import com.onevote.command.repository.VoteSearchRepository;
 import com.onevote.command.security.CustomUserDetails;
+import com.onevote.command.service.UserService;
 import com.onevote.command.service.VoteService;
 import com.onevote.command.validation.VoteValidation;
 import com.onevote.event.VoteEvent;
@@ -34,6 +35,8 @@ public class VoteController {
     private VoteRepository voteRepository;
 
     private VoteService voteService;
+
+    private UserService userService;
 
     @Autowired
     public VoteController(VoteProducer voteProducer,

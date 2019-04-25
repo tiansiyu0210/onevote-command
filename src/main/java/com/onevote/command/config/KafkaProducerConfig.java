@@ -1,6 +1,7 @@
 package com.onevote.command.config;
 
 import com.onevote.User;
+import com.onevote.event.OptionEvent;
 import com.onevote.event.VoteEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -47,5 +48,16 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, VoteEvent> voteEventKafkaTemplate() {
         return new KafkaTemplate<>(voteEventProducerFactory());
+    }
+
+    // Option
+    @Bean
+    public ProducerFactory<String, OptionEvent> optionEventProducerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerFactory());
+    }
+
+    @Bean
+    public KafkaTemplate<String, OptionEvent> optionEventKafkaTemplate() {
+        return new KafkaTemplate<>(optionEventProducerFactory());
     }
 }
