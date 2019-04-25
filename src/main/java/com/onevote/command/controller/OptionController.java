@@ -56,8 +56,5 @@ public class OptionController {
     OptionValidation.validateCreateOption(option, vote, currentUser.getName());
 
     return optionService.createVoteOption(vote, option, currentUser);
-
-
-    // Validation: vote active, expiration, allowCreate option, etc., option name uniqueness case insensitive, option name less than 200 chars
   }
 }
